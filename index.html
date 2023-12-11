@@ -74,14 +74,14 @@
                 </div>
 
                 <div class="search">
-                    <label>
-                        <input type="text" placeholder="Search here">
+                    <label for="search">
+                        <input id="search" type="text" placeholder="Search here">
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
                 </div>
 
                 <div class="user">
-                    <img src="assets/imgs/customer01.jpg" alt="">
+                    <img src="assets/imgs/noel.jpg" alt="">
                 </div>
             </div>
 
@@ -95,28 +95,31 @@
                     </div>
 
                     <table>
-                        <thead>
+                        <thead> 
                             <tr>
-                                <td>Tên Sản Phâm</td>
-                                <td>Giá</td>
-                                <td>Giá Bán</td>
+                                <td>Hình Ảnh</td>
+                                <td>Tên Sản Phẩm</td>
                                 <td>Số lượng</td>
-                                <td>Đơn vị tính</td>
-                                <td>Tình Trạng</td>
+                                <td>Giá Nhập</td>
+                                <td>Giá Bán</td>
                                 <td>Ngày Nhập Hàng</td>
+                                <td>Ngày Hết Hạn</td>
+                                <td>Tình Trạng</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
 
-                        <tbody>
-                            <tr>
-                                <td>Mì Hảo Hảo</td>
-                                <td>327</td>
-                                <td>400</td>
-                                <td>400</td>
-                                <td>Thùng</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                                <td>09/12/2023</td>
+                        <tbody id="data">
+                            <!-- <tr>
+                                <td><img src="" alt="" width="50" height="50"></td>
+                                <td>tensp</td>
+                                <td>slg</td>
+                                <td>gia nhap</td>
+                                <td>gia ban</td>
+                                <td>ngayNhapHang</td>
+                                <td>ngayHetHan</td>
+                                <td><span class="status delivered">tinh trang</span></td>
+                                
                                 <td>
                                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#readData"><i class="bi bi-eye"></i></button>
                     
@@ -125,104 +128,61 @@
                                     <button class="btn btn-danger" ><i class="bi bi-trash"></i></button>
                                                 
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>Mì Hảo Hảo</td>
-                                <td>327</td>
-                                <td>400</td>
-                                <td>400</td>
-                                <td>Thùng</td>
-                                <td><span class="status pending">Pending</span></td>
-                                <td>09/12/2023</td>
-                                <td>
-                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#readData"><i class="bi bi-eye"></i></button>
-                    
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userForm"><i class="bi bi-pencil-square"></i></button>
-                    
-                                    <button class="btn btn-danger" ><i class="bi bi-trash"></i></button>
-                                                
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mì Hảo Hảo</td>
-                                <td>327</td>
-                                <td>400</td>
-                                <td>400</td>
-                                <td>Thùng</td>
-                                <td><span class="status return">Return</span></td>
-                                <td>09/12/2023</td>
-                                <td>
-                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#readData"><i class="bi bi-eye"></i></button>
-                    
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userForm"><i class="bi bi-pencil-square"></i></button>
-                    
-                                    <button class="btn btn-danger" ><i class="bi bi-trash"></i></button>
-                                                
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mì Hảo Hảo</td>
-                                <td>327</td>
-                                <td>400</td>
-                                <td>400</td>
-                                <td>Thùng</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                                <td>09/12/2023</td>
-                                <td>
-                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#readData"><i class="bi bi-eye"></i></button>
-                    
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userForm"><i class="bi bi-pencil-square"></i></button>
-                    
-                                    <button class="btn btn-danger" ><i class="bi bi-trash"></i></button>
-                                                
-                                </td>
-                            </tr>
+                            </tr> -->
+                            
                         </tbody>
                     </table>
                 </div>
 
                 <!-- Pop up form -->
                 
-                <div class="form-popup-bg">
+                <div class="form-popup-bg" id="productForm">
                     <div class="form-container">
                         <button id="btnCloseForm" class="close-button">X</button>
-                        <h1>Contact Us</h1>
+                        <h2 id="productFormTitle">Fill the form</h2>
                         <form action="" id="myform">
+                            <div class="form-group">
+                                <input type="hidden"  id="idsp">
+                            </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Tên Sản Phẩm</label>
-                                    <input type="text" class="form-control" />
+                                    <label for="tensp">Tên Sản Phẩm</label>
+                                    <input type="text" class="form-control" id="tensp" required />
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="">Số Lượng</label>
-                                    <input class="form-control" type="text" />
+                                    <label for="slg">Số Lượng</label>
+                                    <input class="form-control" type="text" id="slg" required />
                                 </div>
 
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Giá Nhập</label>
-                                    <input class="form-control" type="text" />
+                                    <label for="giaNhap">Giá Nhập</label>
+                                    <input class="form-control" type="text" id="giaNhap" required />
                                 </div>
     
                                 <div class="form-group col-md-6">
-                                    <label for="">Giá Bán</label>
-                                    <input class="form-control" type="text" />
+                                    <label for="giaBan">Giá Bán</label>
+                                    <input class="form-control" type="text" id="giaBan" required />
                                 </div>
                             </div>
 
                             
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="ngayNhapHang">Ngày nhập hàng</label>
+                                    <input class="form-control" type="date" id="ngayNhapHang" required />
+                                </div>
+                                <div class="form-group  col-md-6">
+                                    <label for="ngayHetHan">Ngày hết hạn</label>
+                                    <input class="form-control" type="date" id="ngayHetHan" />
+                                </div>
+                            </div>
 
-                            <div class="form-group">
-                                <label for="">Tình trạng</label>
-                                <input class="form-control" type="text" />
-                            </div>
-                            <div class="form-group">
-                                <label for="">Ngày hết hạn</label>
-                                <input class="form-control" type="text" />
-                            </div>
+                            
+                            
                             <div class="form-row">
 
                                 <div class="card imgholder col-md-6">
@@ -234,12 +194,13 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="">Ngày Sản Xuất</label>
-                                    <input class="form-control" type="date" />
+                                    <label for="tinhTrang">Tình trạng</label>
+                                    <input class="form-control" type="text" id="tinhTrang" />
                                 </div>
+                                
                             </div>
                             <div class="popup-footer">
-                                <button type="submit" form="myform" class="btn btn-primary submit">Submit</button>
+                                <button type="submit" id="btnSubmit" form="myform" class="btn btn-primary submit">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -259,6 +220,13 @@
     
     <!-- =========== Scripts =========  -->
     <script src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/firebase.js"></script>
+    <script type="module" src="assets/js/app.js"></script>
+    <script src="assets/js/crud.js"></script>
+    <!-- Sweet Alert -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
