@@ -44,9 +44,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
   // upload image
-image = document.getElementById("imgInput")
+
+let image = document.getElementById("imgInput")
+let imgInput = document.querySelector(".img")
+
+
 image.onchange = function(){
-  if(file.files[0].size < 1000000){  // 1MB = 1000000
+  if(image.files[0].size < 1000000){  // 1MB = 1000000
       var fileReader = new FileReader();
 
       fileReader.onload = function(e){
@@ -54,7 +58,7 @@ image.onchange = function(){
           imgInput.src = imgUrl
       }
 
-      fileReader.readAsDataURL(file.files[0])
+      fileReader.readAsDataURL(image.files[0])
   }
   else{
       alert("This file is too large!")
