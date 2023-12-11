@@ -15,16 +15,19 @@ let toggle = document.querySelector(".toggle");
 let navigation = document.querySelector(".navigation");
 let main = document.querySelector(".main");
 
-toggle.onclick = function () {
+toggle.onclick = toggleClickHandler;
+
+function toggleClickHandler() {
   navigation.classList.toggle("active");
   main.classList.toggle("active");
-};
+}
 
 
 // Pop up Form
 
 function closeForm() {
   document.querySelector('.form-popup-bg').classList.remove('is-visible');
+  toggle.onclick = toggleClickHandler;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -32,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('btnOpenForm').addEventListener('click', function(event) {
     event.preventDefault();
     document.querySelector('.form-popup-bg').classList.add('is-visible');
+    toggle.onclick = null;
   });
 
   // Close popup when clicking x or off popup
@@ -39,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (event.target.classList.contains('form-popup-bg') || event.target.id === 'btnCloseForm') {
       event.preventDefault();
       this.classList.remove('is-visible');
+      toggle.onclick = toggleClickHandler;
     }
   });
 });
