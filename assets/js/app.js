@@ -64,7 +64,7 @@ function showInfo(){
                 <td><span class="status ${e.tinhTrang}">${e.tinhTrang}</span></td>
                 
                 <td>
-                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#readData"><i class="bi bi-eye"></i></button>
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#readData" id='btnSee_${e.id}'><i class="bi bi-eye"></i></button>
 
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userForm" id='btnUpdate_${e.id}'><i class="bi bi-pencil-square"></i></button>
 
@@ -77,18 +77,17 @@ function showInfo(){
     })
     
     lstProduct.forEach((element) => {
+        // Button See Detail Product
+        let btnSeeDetail = document.getElementById(`btnSee_${element.id}`)
+        btnSeeDetail.addEventListener('click', ()=> seeProductDetail(element))
+
         // Button Update
         let btnUpdate = document.getElementById(`btnUpdate_${element.id}`)
         btnUpdate.addEventListener('click', () => showFormUpdateProduct(element))
-
         // Button Delete
         let btnDelete = document.getElementById(`btnDelete_${element.id}`);
         btnDelete.addEventListener('click', () => deleteProduct(element.id));
-
-
     })
-
-
 }
 
 
@@ -105,7 +104,6 @@ btnNewProduct.addEventListener('click', ()=> {
 // Add Product
 form.addEventListener('submit', async (e)=> {
     e.preventDefault()
-    let inpIDSP= document.getElementById("idsp").value
 
     const information = {
         image: imgInput.src == undefined ? "./assets/imgs/Profile Icon.webp" : imgInput.src,
@@ -122,7 +120,19 @@ form.addEventListener('submit', async (e)=> {
         await addProduct(information)
     }
     else{
-
+        let idsp= document.getElementById("idsp").value
+        const data = {
+            id: idsp,
+            image: imgInput.src == undefined ? "./assets/imgs/Profile Icon.webp" : imgInput.src,
+            tensp: tensp.value,
+            slg: slg.value,
+            giaNhap: giaNhap.value,
+            giaBan: giaBan.value,
+            ngayNhapHang: ngayNhapHang.value,
+            ngayHetHan: ngayHetHan.value,
+            tinhTrang: tinhTrang.value
+        }
+        updateProduct(data)
     }
 
     resetTable()
@@ -217,8 +227,23 @@ async function deleteProduct(idsp){
 }
 
 
-function updateProduct(product){
+async function updateProduct(product){
+    console.log(product);
+    const dbRef = doc(db,"products",product.id)
+    try{
+        await updateDoc(dbRef,product)
+        .then(()=>{
+            announce("success","Cập nhật sản phẩm thành công")
+        })
+        form.reset()
+        closeForm()
+        imgInput.src = "./assets/imgs/Profile Icon.webp"
+    }
+    catch (err){
+        console.log(err);
+        announce("error","Cập nhật sản phẩm không thành công")
 
+    }
 }
 
 // Các function phụ trợ
